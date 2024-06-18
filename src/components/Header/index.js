@@ -18,7 +18,7 @@ const Header = () => (
       <li className="header-li">
         <Link to="/top-rated" className="header-nav-link">
           <button className="header-link-buttton" type="button">
-            Top Ratedr
+            Top Rated
           </button>
         </Link>
       </li>

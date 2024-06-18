@@ -1,16 +1,16 @@
-.popular-main-container {
+.movie-details-main-container {
+  padding: 10px;
+  padding-left: 30px;
   width: 100%;
   background-color: black;
+  color: white;
+  font-size: 10px;
 }
 
-.popular-ul {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  list-style-type: none;
-  padding-left: 0px;
-  padding: 10px;
-  flex-wrap: wrap;
+.movie-img {
+  width: 20%;
+  height: 50vh;
+  margin-bottom: 10px;
 }
 
 .products-loader-container {

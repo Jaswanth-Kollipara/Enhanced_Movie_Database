@@ -24,7 +24,7 @@ class Popular extends Component {
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
-    const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=02881493a475ea49012dd3d678c23298&language=en-US&page=1`
+    const apiUrl = `https://api.themoviedb.org/3/movie/top_rated?api_key=02881493a475ea49012dd3d678c23298&language=en-US&page=1`
     const response = await fetch(apiUrl)
     if (response.ok) {
       const fetchedData = await response.json()
