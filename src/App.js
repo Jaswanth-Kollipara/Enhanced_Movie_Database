@@ -4,6 +4,7 @@ import Popular from './components/Popular'
 import TopRated from './components/TopRated'
 import Upcoming from './components/Upcoming'
 import MovieDetails from './components/MovieDetails'
+import SearchDetails from './components/SearchDetails'
 import './App.css'
 
 const App = () => (
@@ -13,6 +14,7 @@ const App = () => (
       <Route exact path="/" component={Popular} />
       <Route exact path="/top-rated" component={TopRated} />
       <Route exact path="/upcoming" component={Upcoming} />
+      <Route exact path="/search/:text" component={SearchDetails} />
       <Route exact path="/movie/:id" component={MovieDetails} />
     </Switch>
   </div>

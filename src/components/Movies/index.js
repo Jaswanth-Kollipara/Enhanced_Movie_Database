@@ -7,8 +7,8 @@ const Movies = props => {
   const path = `https://image.tmdb.org/t/p/w500${posterPath}`
   return (
     <li className="movies-li-con">
-      <h1 className="movies-heading">{originalTitle}</h1>
-      <p className="movies-para">{voteAverage}</p>
+      <h1 className="movies-heading">Title: {originalTitle}</h1>
+      <p className="movies-para">Rating: {voteAverage}</p>
       <img className="movies-img" src={path} alt={originalTitle} />
       <Link to={`/movie/${id}`} className="movies-link">
         <button type="button" className="movies-btn">

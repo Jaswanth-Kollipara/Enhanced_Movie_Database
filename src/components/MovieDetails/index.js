@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Loader from 'react-loader-spinner'
-
+import CastDetails from '../CastDetails'
 import './index.css'
 
 const apiStatusConstants = {
@@ -70,7 +70,6 @@ class ProductItemDetails extends Component {
     const {match} = this.props
     const {params} = match
     const {id} = params
-    console.log(id)
 
     this.setState({
       apiStatus1: apiStatusConstants1.inProgress,
@@ -79,18 +78,20 @@ class ProductItemDetails extends Component {
     const response = await fetch(apiUrl)
     if (response.ok) {
       const fetchedData = await response.json()
-      const updatedData = {
-        originalTitle: fetchedData.original_title,
-        posterPath: fetchedData.poster_path,
-        voteAverage: fetchedData.vote_average,
-        runtime: fetchedData.runtime,
-        genres: fetchedData.genres.map(val => ({
-          id: val.id,
-          name: val.name,
-        })),
-        releaseDate: fetchedData.release_date,
-        overview: fetchedData.overview,
-      }
+      const updatedData = fetchedData.cast.map(product => ({
+        adult: product.adult,
+        gender: product.gender,
+        id: product.id,
+        knownForDepartment: product.known_for_department,
+        name: product.name,
+        originalName: product.original_name,
+        popularity: product.popularity,
+        profilePath: product.profile_path,
+        castId: product.cast_id,
+        character: product.character,
+        creditId: product.credit_id,
+        order: product.order,
+      }))
       this.setState({
         castData: updatedData,
         apiStatus1: apiStatusConstants1.success,
@@ -131,6 +132,21 @@ class ProductItemDetails extends Component {
         <h1>Overview: {overview}</h1>
         <h1>Gener: {gener}</h1>
         <img className="movie-img" src={path} alt={originalTitle} />
+        <hr />
+        <h1>Cast Details:-</h1>
+      </div>
+    )
+  }
+
+  renderCastDetailsView = () => {
+    const {castData} = this.state
+    return (
+      <div className="movie-details-main-container1">
+        <ul className="cast-ul">
+          {castData.map(item => (
+            <CastDetails key={item.castId} castData={item} />
+          ))}
+        </ul>
       </div>
     )
   }
@@ -172,11 +188,27 @@ class ProductItemDetails extends Component {
     }
   }
 
+  renderCastDetails = () => {
+    const {apiStatus1} = this.state
+
+    switch (apiStatus1) {
+      case apiStatusConstants1.success:
+        return this.renderCastDetailsView()
+      case apiStatusConstants1.failure:
+        return this.renderFailureView()
+      case apiStatusConstants1.inProgress:
+        return this.renderLoadingView()
+      default:
+        return null
+    }
+  }
+
   render() {
     return (
       <>
         <div className="product-item-details-container">
           {this.renderProductDetails()}
+          {this.renderCastDetails()}
         </div>
       </>
     )
