@@ -3,6 +3,25 @@
   background-color: black;
 }
 
+.popular-main-container-in {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+  align-items: center;
+}
+
+.popular-btn {
+  color: white;
+  border: 2px solid white;
+  background-color: transparent;
+  font-size: 13px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 24px;
+}
+
 .popular-ul {
   width: 100%;
   display: flex;

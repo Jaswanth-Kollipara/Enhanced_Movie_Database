@@ -3,6 +3,14 @@
   background-color: black;
 }
 
+.popular-main-container-in {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
 .popular-ul {
   width: 100%;
   display: flex;
@@ -27,6 +35,7 @@
   align-items: center;
   margin-top: 48px;
   padding-bottom: 64px;
+  height: 100vh;
 }
 
 .products-failure-img {

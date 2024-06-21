@@ -14,6 +14,7 @@ class Popular extends Component {
   state = {
     moviesList: {},
     apiStatus: apiStatusConstants.initial,
+    page: 1,
   }
 
   componentDidMount() {
@@ -24,7 +25,8 @@ class Popular extends Component {
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
     })
-    const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=02881493a475ea49012dd3d678c23298&language=en-US&page=1`
+    const {page} = this.state
+    const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=02881493a475ea49012dd3d678c23298&language=en-US&page=${page}`
     const response = await fetch(apiUrl)
     if (response.ok) {
       const fetchedData = await response.json()
@@ -55,11 +57,39 @@ class Popular extends Component {
     }
   }
 
+  onClickPrev = () => {
+    const {page} = this.state
+    if (page !== 1) {
+      this.setState(prevState => ({page: prevState.page - 1}), this.getMovies)
+    }
+  }
+
+  onClickNext = () => {
+    this.setState(prevState => ({page: prevState.page + 1}), this.getMovies)
+  }
+
   renderMoviesListView = () => {
-    const {moviesList} = this.state
+    const {moviesList, page} = this.state
 
     return (
       <div className="popular-main-container">
+        <div className="popular-main-container-in">
+          <button
+            type="button"
+            className="popular-btn"
+            onClick={this.onClickPrev}
+          >
+            Prev
+          </button>
+          <p className="popular-para">{page}</p>
+          <button
+            type="button"
+            className="popular-btn"
+            onClick={this.onClickNext}
+          >
+            Next
+          </button>
+        </div>
         <ul className="popular-ul">
           {moviesList.map(item => (
             <Movies key={item.id} movieData={item} />
