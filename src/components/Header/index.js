@@ -1,9 +1,6 @@
 import {Component} from 'react'
 import {Link} from 'react-router-dom'
-import {BsSearch} from 'react-icons/bs'
 import './index.css'
-
-const searchIcon = <BsSearch className="header-search-icon" />
 
 class Header extends Component {
   state = {text: ''}
@@ -44,13 +41,13 @@ class Header extends Component {
           <input
             type="search"
             className="header-search-input"
-            placeholder="search"
+            placeholder="Enter Movie Name"
             value={text}
             onChange={this.onChangeText}
           />
           <Link to={`/search/${text}`}>
             <button type="button" className="header-search-button">
-              {searchIcon}
+              Search
             </button>
           </Link>
         </div>

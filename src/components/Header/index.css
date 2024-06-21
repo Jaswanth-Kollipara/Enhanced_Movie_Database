@@ -36,11 +36,12 @@
 
 .header-search-input {
   margin-left: 10px;
+  margin-right: 10px;
 }
 
 .header-search-button {
   background-color: transparent;
   color: white;
-  font-size: 20px;
-  border: none;
+  font-size: 13px;
+  border: 2px solid white;
 }
