@@ -69,33 +69,14 @@ class Popular extends Component {
   }
 
   renderMoviesListView = () => {
-    const {moviesList, page} = this.state
+    const {moviesList} = this.state
 
     return (
-      <div className="popular-main-container">
-        <div className="popular-main-container-in">
-          <button
-            type="button"
-            className="popular-btn"
-            onClick={this.onClickPrev}
-          >
-            Prev
-          </button>
-          <p className="popular-para">{page}</p>
-          <button
-            type="button"
-            className="popular-btn"
-            onClick={this.onClickNext}
-          >
-            Next
-          </button>
-        </div>
-        <ul className="popular-ul">
-          {moviesList.map(item => (
-            <Movies key={item.id} movieData={item} />
-          ))}
-        </ul>
-      </div>
+      <ul className="popular-ul">
+        {moviesList.map(item => (
+          <Movies key={item.id} movieData={item} />
+        ))}
+      </ul>
     )
   }
 
@@ -137,7 +118,30 @@ class Popular extends Component {
   }
 
   render() {
-    return this.renderAllMovies()
+    const {page} = this.state
+
+    return (
+      <div className="popular-main-container">
+        <div className="popular-main-container-in">
+          <button
+            type="button"
+            className="popular-btn"
+            onClick={this.onClickPrev}
+          >
+            Prev
+          </button>
+          <p className="popular-para">{page}</p>
+          <button
+            type="button"
+            className="popular-btn"
+            onClick={this.onClickNext}
+          >
+            Next
+          </button>
+        </div>
+        {this.renderAllMovies()}
+      </div>
+    )
   }
 }
 
